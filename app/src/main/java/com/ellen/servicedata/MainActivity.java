@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
                 if(responseBody.code() == 200){
                     Log.e("Ellen2018","请求的数据："+responseBody.body());
                 }else {
-
+                    Log.e("Ellen2018","请求失败："+responseBody.body());
                 }
             }
 
             @Override
             public void onError(String errorMessage) {
-
+                Log.e("Ellen2018","请求失败："+errorMessage);
             }
         });
     }

@@ -1,0 +1,3 @@
+include ':serverdata'
+include ':app'
+rootProject.name = "ServiceData"

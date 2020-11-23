@@ -1,6 +1,6 @@
 package com.ellen.serverdata.bean;
 
-public class BaseApi<T> {
+public class BaseApiBean<T> {
     private int code;
     private String message;
     private T data;

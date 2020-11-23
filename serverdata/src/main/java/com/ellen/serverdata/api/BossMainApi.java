@@ -2,7 +2,7 @@ package com.ellen.serverdata.api;
 
 import com.ellen.lmydata.LmyHttpsEmulator;
 import com.ellen.lmydata.RequestParams;
-import com.ellen.serverdata.bean.BaseApi;
+import com.ellen.serverdata.bean.BaseApiBean;
 import com.ellen.serverdata.bean.bossmain.BossMain;
 import com.ellen.serverdata.bean.bossmain.BossMainData;
 import com.google.gson.Gson;
@@ -30,10 +30,10 @@ public class BossMainApi implements LmyHttpsEmulator {
     @Override
     public String json(RequestParams requestParams) {
         if(requestParams.getGetFieldValues() == null || !requestParams.getGetFieldValues().containsKey("page") || !requestParams.getGetFieldValues().containsKey("count")){
-            BaseApi<BossMain> bossMainBaseApi = new BaseApi<>();
-            bossMainBaseApi.setCode(404);
-            bossMainBaseApi.setMessage("请求参数不全");
-            return new Gson().toJson(bossMainBaseApi);
+            BaseApiBean<BossMain> bossMainBaseApiBean = new BaseApiBean<>();
+            bossMainBaseApiBean.setCode(404);
+            bossMainBaseApiBean.setMessage("请求参数不全");
+            return new Gson().toJson(bossMainBaseApiBean);
         }else {
             int page = (int) requestParams.getGetFieldValues().get("page");
             int count = (int) requestParams.getGetFieldValues().get("count");
@@ -71,11 +71,11 @@ public class BossMainApi implements LmyHttpsEmulator {
             }else {
                 bossMain.setIsHaveNextPage(1);
             }
-            BaseApi<BossMain> bossMainBaseApi = new BaseApi<>();
-            bossMainBaseApi.setCode(200);
-            bossMainBaseApi.setMessage("Success!");
-            bossMainBaseApi.setData(bossMain);
-            return new Gson().toJson(bossMainBaseApi);
+            BaseApiBean<BossMain> bossMainBaseApiBean = new BaseApiBean<>();
+            bossMainBaseApiBean.setCode(200);
+            bossMainBaseApiBean.setMessage("Success!");
+            bossMainBaseApiBean.setData(bossMain);
+            return new Gson().toJson(bossMainBaseApiBean);
         }
     }
 }

@@ -1,25 +1,21 @@
 package com.ellen.serverdata.api;
 
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.ellen.dhcsqlitelibrary.table.impl.ZxyLibrary;
 import com.ellen.lmydata.LmyHttpsEmulator;
 import com.ellen.lmydata.RequestParams;
 import com.ellen.serverdata.bean.BaseApiBean;
 import com.ellen.serverdata.bean.user.User;
+import com.ellen.serverdata.sql.ServiceSqlLibrary;
 import com.ellen.serverdata.sql.table.user.UserTable;
-import com.ellen.sqlitecreate.createsql.helper.WhereSymbolEnum;
-import com.ellen.sqlitecreate.createsql.where.Where;
 import com.google.gson.Gson;
 
 public class RegisterApi implements LmyHttpsEmulator {
 
     private UserTable userTable;
 
-    public RegisterApi(ZxyLibrary zxyLibrary){
-       userTable = new UserTable(zxyLibrary,"service_user_table");
-       userTable.onCreateTableIfNotExits();
+    public RegisterApi(ServiceSqlLibrary serviceSqlLibrary) {
+        this.userTable = serviceSqlLibrary.getUserTable();
     }
 
     @Override
@@ -44,8 +40,7 @@ public class RegisterApi implements LmyHttpsEmulator {
         String rePassword = (String) requestParams.getPostFieldValues().get("re_password");
 
         //验证账号是否已注册
-        String sql = Where.getInstance(false).addAndWhereValue("account", WhereSymbolEnum.EQUAL,account).createSQL();
-        if(userTable.search(sql,null).size() > 0){
+        if (userTable.searchByMajorKey(account) != null) {
             BaseApiBean<User> baseApiBean = new BaseApiBean<>();
             baseApiBean.setCode(404);
             baseApiBean.setMessage("此账号已注册!");
@@ -81,9 +76,10 @@ public class RegisterApi implements LmyHttpsEmulator {
                 user.setAccount(account);
                 user.setPassword(password);
                 user.setUserName(account);
+                user.setUserId(System.currentTimeMillis());
                 BaseApiBean<User> baseApiBean = new BaseApiBean<>();
                 baseApiBean.setCode(200);
-                baseApiBean.setMessage("请求成功!");
+                baseApiBean.setMessage("注册账号成功!");
                 baseApiBean.setData(user);
 
 

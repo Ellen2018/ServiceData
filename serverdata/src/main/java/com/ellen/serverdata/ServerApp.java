@@ -3,7 +3,9 @@ package com.ellen.serverdata;
 import android.app.Application;
 
 import com.ellen.lmydata.LmyEmulator;
+import com.ellen.lmydata.LmyHttpsEmulator;
 import com.ellen.serverdata.api.BossMainApi;
+import com.ellen.serverdata.api.LoginApi;
 import com.ellen.serverdata.api.RegisterApi;
 import com.ellen.serverdata.sql.ServiceSqlLibrary;
 
@@ -20,5 +22,7 @@ public class ServerApp extends Application {
         LmyEmulator.getInstance().addHttpsEmulator(new BossMainApi());
         //注册接口
         LmyEmulator.getInstance().addHttpsEmulator(new RegisterApi(serviceSqlLibrary));
+        //登录接口
+        LmyEmulator.getInstance().addHttpsEmulator(new LoginApi(serviceSqlLibrary));
     }
 }

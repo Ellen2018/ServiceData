@@ -9,6 +9,10 @@ import com.ellen.dhcsqlitelibrary.table.annotation.field.bound.Unique;
 public class User {
     @MajorKey
     private String account;
+    /**
+     * 用户id
+     */
+    private long userId;
     private String password;
     @Unique
     private String qqId;
@@ -44,6 +48,14 @@ public class User {
 
     public String getWxId() {
         return wxId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public void setWxId(String wxId) {

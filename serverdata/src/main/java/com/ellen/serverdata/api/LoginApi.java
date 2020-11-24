@@ -107,6 +107,7 @@ public class LoginApi implements LmyHttpsEmulator {
                         baseApiBean.setMessage("登录成功!");
                         baseApiBean.setCode(200);
                         User user = new User();
+                        user.setUserId(System.currentTimeMillis());
                         user.setQqId(qqId);
                         userTable.saveData(user);
                         return new Gson().toJson(baseApiBean);
@@ -137,6 +138,7 @@ public class LoginApi implements LmyHttpsEmulator {
                         baseApiBean.setMessage("登录成功!");
                         baseApiBean.setCode(200);
                         User user = new User();
+                        user.setUserId(System.currentTimeMillis());
                         user.setWxId(wxId);
                         userTable.saveData(user);
                         return new Gson().toJson(baseApiBean);

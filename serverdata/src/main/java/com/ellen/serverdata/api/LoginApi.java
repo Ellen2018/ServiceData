@@ -109,6 +109,7 @@ public class LoginApi implements LmyHttpsEmulator {
                         User user = new User();
                         user.setUserId(System.currentTimeMillis());
                         user.setQqId(qqId);
+                        baseApiBean.setData(user);
                         userTable.saveData(user);
                         return new Gson().toJson(baseApiBean);
                     }
@@ -140,6 +141,7 @@ public class LoginApi implements LmyHttpsEmulator {
                         User user = new User();
                         user.setUserId(System.currentTimeMillis());
                         user.setWxId(wxId);
+                        baseApiBean.setData(user);
                         userTable.saveData(user);
                         return new Gson().toJson(baseApiBean);
                     }

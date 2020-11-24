@@ -7,11 +7,11 @@ import com.ellen.dhcsqlitelibrary.table.annotation.field.bound.Unique;
  * 用于用户注册 & 登录
  */
 public class User {
-    @MajorKey
     private String account;
     /**
      * 用户id
      */
+    @MajorKey
     private long userId;
     private String password;
     @Unique

@@ -8,7 +8,11 @@ import com.ellen.serverdata.bean.BaseApiBean;
 import com.ellen.serverdata.bean.user.User;
 import com.ellen.serverdata.sql.ServiceSqlLibrary;
 import com.ellen.serverdata.sql.table.UserTable;
+import com.ellen.sqlitecreate.createsql.helper.WhereSymbolEnum;
+import com.ellen.sqlitecreate.createsql.where.Where;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 public class RegisterApi implements LmyHttpsEmulator {
 
@@ -39,8 +43,14 @@ public class RegisterApi implements LmyHttpsEmulator {
         String password = (String) requestParams.getPostFieldValues().get("password");
         String rePassword = (String) requestParams.getPostFieldValues().get("re_password");
 
+        String searchSql = Where.getInstance(false)
+                .addAndWhereValue("account", WhereSymbolEnum.EQUAL,account)
+                .createSQL();
+
+        List<User> userList = userTable.search(searchSql,null);
+
         //验证账号是否已注册
-        if (userTable.searchByMajorKey(account) != null) {
+        if (userList.size() > 0) {
             BaseApiBean<User> baseApiBean = new BaseApiBean<>();
             baseApiBean.setCode(404);
             baseApiBean.setMessage("此账号已注册!");

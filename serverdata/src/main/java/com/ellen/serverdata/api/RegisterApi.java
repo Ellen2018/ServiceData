@@ -7,7 +7,7 @@ import com.ellen.lmydata.RequestParams;
 import com.ellen.serverdata.bean.BaseApiBean;
 import com.ellen.serverdata.bean.user.User;
 import com.ellen.serverdata.sql.ServiceSqlLibrary;
-import com.ellen.serverdata.sql.table.user.UserTable;
+import com.ellen.serverdata.sql.table.UserTable;
 import com.google.gson.Gson;
 
 public class RegisterApi implements LmyHttpsEmulator {

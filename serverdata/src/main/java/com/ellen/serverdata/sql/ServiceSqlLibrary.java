@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ellen.dhcsqlitelibrary.table.impl.ZxyLibrary;
-import com.ellen.serverdata.sql.table.user.UserTable;
+import com.ellen.serverdata.sql.table.UserTable;
 
 public class ServiceSqlLibrary extends ZxyLibrary {
 

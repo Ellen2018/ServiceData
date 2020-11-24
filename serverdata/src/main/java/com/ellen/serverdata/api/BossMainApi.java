@@ -29,7 +29,7 @@ public class BossMainApi implements LmyHttpsEmulator {
 
     @Override
     public String json(RequestParams requestParams) {
-        if(requestParams.getGetFieldValues() == null || !requestParams.getGetFieldValues().containsKey("page") || !requestParams.getGetFieldValues().containsKey("count")){
+        if(!requestParams.getGetFieldValues().containsKey("page") || !requestParams.getGetFieldValues().containsKey("count")){
             BaseApiBean<BossMain> bossMainBaseApiBean = new BaseApiBean<>();
             bossMainBaseApiBean.setCode(404);
             bossMainBaseApiBean.setMessage("请求参数不全");
@@ -53,16 +53,16 @@ public class BossMainApi implements LmyHttpsEmulator {
                 //设置公司规模
                 bossMainData.setScale("11~50");
                 //设置公司融资状态
-                bossMainData.setStatus("天使轮");
+                bossMainData.setStatus("天使轮【"+page+"】");
                 //设置公司标签
                 List<String> tagLists = new ArrayList<>();
                 tagLists.add("标签1");
                 tagLists.add("标签2");
                 tagLists.add("标签3");
                 bossMainData.setTags(tagLists);
-                //设置公司上限
+                //设置工资上限
                 bossMainData.setWageLowerLimit(11);
-                //设置公司下限
+                //设置工资下限
                 bossMainData.setWageLowerLimit(20);
                 bossMain.getCompany().add(bossMainData);
             }

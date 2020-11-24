@@ -1,4 +1,4 @@
-package com.ellen.serverdata.sql.table.user;
+package com.ellen.serverdata.sql.table;
 
 import android.database.sqlite.SQLiteDatabase;
 

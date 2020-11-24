@@ -1,15 +1,13 @@
 package com.ellen.serverdata.api;
 
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.ellen.dhcsqlitelibrary.table.impl.ZxyLibrary;
 import com.ellen.lmydata.LmyHttpsEmulator;
 import com.ellen.lmydata.RequestParams;
 import com.ellen.serverdata.bean.BaseApiBean;
 import com.ellen.serverdata.bean.user.User;
 import com.ellen.serverdata.sql.ServiceSqlLibrary;
-import com.ellen.serverdata.sql.table.user.UserTable;
+import com.ellen.serverdata.sql.table.UserTable;
 import com.ellen.sqlitecreate.createsql.helper.WhereSymbolEnum;
 import com.ellen.sqlitecreate.createsql.where.Where;
 import com.google.gson.Gson;
@@ -104,7 +102,7 @@ public class LoginApi implements LmyHttpsEmulator {
                         baseApiBean.setCode(200);
                         return new Gson().toJson(baseApiBean);
                     } else {
-                        //需要绑定账号(客户端完成)
+                        //第一次使用qq进行登录，将帐号记录进数据库
                         BaseApiBean<User> baseApiBean = new BaseApiBean<>();
                         baseApiBean.setMessage("登录成功!");
                         baseApiBean.setCode(200);
@@ -134,7 +132,7 @@ public class LoginApi implements LmyHttpsEmulator {
                         baseApiBean.setCode(200);
                         return new Gson().toJson(baseApiBean);
                     } else {
-                        //需要绑定账号(客户端完成)
+                        //第一次使用微信进行登录，写入数据库
                         BaseApiBean<User> baseApiBean = new BaseApiBean<>();
                         baseApiBean.setMessage("登录成功!");
                         baseApiBean.setCode(200);
